@@ -1,13 +1,14 @@
-package com.gameloft.sqlite;
+package com.ngohaihue.sqlite;
 
-/**
- * Created by USER on 20/10/2017.
- */
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+/**
+ * Created by USER on 20/10/2017.
+ */
 
 
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {

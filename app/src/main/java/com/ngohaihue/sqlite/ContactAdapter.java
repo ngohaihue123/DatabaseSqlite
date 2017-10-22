@@ -1,4 +1,4 @@
-package com.gameloft.sqlite;
+package com.ngohaihue.sqlite;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+
 
 /**
  * Created by USER on 19/10/2017.
@@ -33,7 +35,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Contact contact = contacts.get(position);
-        holder.mTvName.setText(contact.getName());
+        holder.mTvName.setText(contact.getmName());
     }
 
     @Override

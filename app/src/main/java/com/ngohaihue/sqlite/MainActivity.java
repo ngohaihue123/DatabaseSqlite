@@ -1,20 +1,20 @@
-package com.gameloft.sqlite;
+package com.ngohaihue.sqlite;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getBaseContext(), DetailActivity.class);
-                        Log.d("pos = ", String.valueOf(position) + String.valueOf(contacts.get(position).getId()));
-                        intent.putExtra("ID",contacts.get(position).getId());
+                        intent.putExtra("ID",contacts.get(position).getmId());
                         startActivityForResult(intent, 2);
                     }
 
@@ -114,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode== 1 && resultCode == RESULT_OK) {
             Contact contact = (Contact) data.getExtras().getSerializable("RETURN");
-           // contacts.add(db.getContact(contact.getId()));
             contacts.add(contact);
             mAdapter.notifyDataSetChanged();
         }
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             int id = Integer.parseInt(contactID);
             int pos = 0;
             for (int i=0;i<contacts.size();i++){
-                if (contacts.get(i).getId()==id) {
+                if (contacts.get(i).getmId()==id) {
                     pos = i;
                     break;
                 }
@@ -136,13 +134,12 @@ public class MainActivity extends AppCompatActivity {
             int id = Integer.parseInt(editID);
             int pos=0;
             for (int i=0;i<contacts.size();i++){
-                if (contacts.get(i).getId()==id) {
+                if (contacts.get(i).getmId()==id) {
                     pos = i;
                     break;
                 }
             }
-            contacts.get(pos).setName(db.getContact(id).getName());
-            ///contacts.clear();
+            contacts.get(pos).setmName(db.getContact(id).getmName());
             db.close();
             mAdapter.notifyDataSetChanged();
         }

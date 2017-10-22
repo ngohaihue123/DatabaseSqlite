@@ -1,4 +1,4 @@
-package com.gameloft.sqlite;
+package com.ngohaihue.sqlite.sqlite;
 
 import org.junit.Test;
 

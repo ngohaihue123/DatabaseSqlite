@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gameloft.sqlite.DetailActivity">
+    tools:context="com.ngohaihue.sqlite.DetailActivity">
     <ImageView
         android:id="@+id/ivDetailCover"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_cover.height"
-        android:src="@drawable/img_cover"
+        android:src="@drawable/anh"
         android:scaleType="centerCrop"/>
     <TextView
         android:id="@+id/tvDetailName"

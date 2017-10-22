@@ -1,4 +1,4 @@
-package com.gameloft.sqlite;
+package com.ngohaihue.sqlite.sqlite;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.gameloft.sqlite", appContext.getPackageName());
+        assertEquals("com.ngohaihue.sqlite.sqlite", appContext.getPackageName());
     }
 }

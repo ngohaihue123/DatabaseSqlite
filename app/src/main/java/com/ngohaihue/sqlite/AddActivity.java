@@ -1,9 +1,8 @@
-package com.gameloft.sqlite;
-
+package com.ngohaihue.sqlite;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,7 @@ import android.widget.RadioGroup;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,8 +31,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         init();
         b = getIntent().getExtras();
         if (b!=null){
-            contact.setId(b.getInt("ID"));
-            contact = db.getContact(contact.getId());
+            contact.setmId(b.getInt("ID"));
+            contact = db.getContact(contact.getmId());
             setData();
         }
     }
@@ -51,10 +51,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private  void setData(){
         getSupportActionBar().setTitle("Update Contact");
         btnAdd.setText("UPDATE");
-        edtName.setText(contact.getName());
-        edtAddress.setText(contact.getAddress());
-        edtPhone.setText(contact.getPhone());
-        if (contact.getGender().equals("Male")) {
+        edtName.setText(contact.getmName());
+        edtAddress.setText(contact.getmAddress());
+        edtPhone.setText(contact.getmPhone());
+        if (contact.getmGender().equals("Male")) {
             radioGender.check(R.id.radioMale);
         } else radioGender.check(R.id.radioFemale);
     }
@@ -72,24 +72,24 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     private void add(){
-        contact.setName(edtName.getText().toString());
-        contact.setPhone(edtPhone.getText().toString());
-        contact.setAddress(edtAddress.getText().toString());
+        contact.setmName(edtName.getText().toString());
+        contact.setmPhone(edtPhone.getText().toString());
+        contact.setmAddress(edtAddress.getText().toString());
         long day = System.currentTimeMillis();
         String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(day));
-        contact.setDate(date);
+        contact.setmDate(date);
         String h = new SimpleDateFormat("hh:mm:ss").format(new Date(day));
-        contact.setTime(h);
+        contact.setmTime(h);
         int idrad = radioGender.getCheckedRadioButtonId();
         rbGender = (RadioButton) findViewById(idrad);
-        contact.setGender(rbGender.getText().toString());
+        contact.setmGender(rbGender.getText().toString());
 
         if (b!=null){
             db.updateContact(contact);
 
 
         } else {
-            contact.setId(db.addContact(contact));
+            contact.setmId(db.addContact(contact));
 
         }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.gameloft.sqlite.AddActivity">
+    tools:context="com.ngohaihue.sqlite.AddActivity">
 
     <EditText
         android:id="@+id/edtName"

@@ -1,19 +1,21 @@
-package com.gameloft.sqlite;
+package com.ngohaihue.sqlite;
 
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+
 
 public class DetailActivity extends AppCompatActivity {
     private Bundle b;
@@ -54,13 +56,6 @@ public class DetailActivity extends AppCompatActivity {
                 Intent call = new Intent(Intent.ACTION_CALL);
                 call.setData(Uri.parse("tel:" + tvDetailPhone.getText()));
                 if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
                 startActivity(call);
@@ -79,18 +74,18 @@ public class DetailActivity extends AppCompatActivity {
         db = new MyDatabase(this);
         b = getIntent().getExtras();
         contact = new Contact();
-        contact.setId(b.getInt("ID"));
-        contact = db.getContact(contact.getId());
-        //db.close();
+        contact.setmId(b.getInt("ID"));
+        contact = db.getContact(contact.getmId());
+
     }
 
     private void setData(){
-        tvDetailName.setText(contact.getName());
-        tvDetailAddress.setText(contact.getAddress());
-        tvDetailGender.setText(contact.getGender());
-        tvDetailDate.setText(contact.getDate());
-        tvDetailTime.setText(contact.getTime());
-        tvDetailPhone.setText(contact.getPhone());
+        tvDetailName.setText(contact.getmName());
+        tvDetailAddress.setText(contact.getmAddress());
+        tvDetailGender.setText(contact.getmGender());
+        tvDetailDate.setText(contact.getmDate());
+        tvDetailTime.setText(contact.getmTime());
+        tvDetailPhone.setText(contact.getmPhone());
     }
 
     @Override
@@ -106,14 +101,14 @@ public class DetailActivity extends AppCompatActivity {
             case android.R.id.home:
                 if (edited){
                     Intent i = new Intent();
-                    i.putExtra("ID",String.valueOf(contact.getId()));
+                    i.putExtra("ID",String.valueOf(contact.getmId()));
                     setResult(1,i);
                 }
                 this.finish();
                 break;
             case R.id.btnEdit:
                 Intent intent = new Intent(getBaseContext(), AddActivity.class);
-                intent.putExtra("ID",contact.getId());
+                intent.putExtra("ID",contact.getmId());
                 startActivityForResult(intent, 3);
                 break;
             case R.id.btnDelete:
@@ -127,7 +122,7 @@ public class DetailActivity extends AppCompatActivity {
                         db.deleteContact(contact);
                         db.close();
                         Intent intent = new Intent();
-                        intent.putExtra("ID",String.valueOf(contact.getId()));
+                        intent.putExtra("ID",String.valueOf(contact.getmId()));
                         setResult(RESULT_OK,intent);
                         finish();
                     }
@@ -158,7 +153,7 @@ public class DetailActivity extends AppCompatActivity {
     public void onBackPressed(){
         if (edited){
             Intent i = new Intent();
-            i.putExtra("ID",String.valueOf(contact.getId()));
+            i.putExtra("ID",String.valueOf(contact.getmId()));
             setResult(1,i);
         }
         this.finish();
